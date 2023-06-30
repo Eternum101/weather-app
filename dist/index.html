@@ -4,8 +4,115 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Application</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    
+    <div class="main-container">
+        <div class="header">
+            <h2>Weather.App</h2>
+        <div class="temperatures">
+                <button class="btn-metric">°C, m/s</button>
+                <button class="btn-imperial">°F, mph</button>
+        </div>
+        </div>
+        <div class="search-container">
+            <div class="search-description">
+                <h3>24/7 Hour Weather</h3>
+                <p>Search real-time weather updates and plan your day with confidence with our accurate and reliable weather app.</p>
+            </div>
+            <div class="search-input">
+                <input class="input-search" type="text" placeholder="Search Zip, City, Place">
+                <button class="btn-search">Search</button>
+            </div>
+        </div>
+        <div class="weather-container">
+                <div class="location-info">
+                    <div class="location-header">
+                        <div class="weather-location">
+                            <span data-current-location>Brisbane,</span>
+                        </div>
+                        <div class="weather-country">
+                            <span data-current-country>Australia</span>
+                        </div>
+                    </div>
+            <div class="location-date-info">
+                <div class="weather-date">
+                    <span data-current-date>29th May 2023 | </span>
+                </div>
+                <div class="weather-time">
+                    <span data-current-time>12:27</span>
+                </div>
+            </div>
+        </div>
+        <div class="weather-details-container">
+            <div class="temperature-info">
+                <div class="weather-temperature">
+                    <span data-current-temp>21</span>&deg;
+                </div>
+                <div class="weather-desc">
+                    <span data-current-weather-desc>Clear Sky</span>
+                </div>
+                <div class="weather-details">
+                    <span data-current-feel-desc>Feels like 19°C</span>
+                </div>
+                <div class="weather-wind-desc">
+                    <span data-current-wind-desc>Light Air</span>
+                </div>
+            </div>
+            <div class="air-info">
+                <div class="weather-air-quality">
+                    <p>Air Quality: <span class="air-details" data-current-air-quality>36</span></p>
+                </div>
+                <div class="weather-barometer">
+                    <p>Barometer: <span class="air-details" data-current-barometer>30.05 in</span></p>
+                </div>
+                <div class="weather-dew-point">
+                    <p>Dew Point: <span class="air-details" data-current-dew-point>42°</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="details-info-container">
+                <div class="weather-wind">
+                    <p class="details-title">Wind</p>
+                    <p class="details-data" data-current-wind>7m/s</p>
+                </div>
+                <div class="weather-humidity">
+                    <p class="details-title">Humidity</p>
+                    <p class="details-data" data-current-humidity>40%</p>
+                </div>
+                <div class="weather-uv">
+                    <p class="details-title">UV Index</p>
+                    <p class="details-data" data-current-uv-index>4</p>
+                </div>
+                <div class="weather-visibility">
+                    <p class="details-title">Visibility</p>
+                    <p class="details-data" data-current-visibility>10km</p>
+                </div>
+                <div class="weather-cloudiness">
+                    <p class="details-title">Cloudiness</p>
+                    <p class="details-data" data-current-cloudiness>0%</p>
+                </div>
+                <div class="weather-rain">
+                    <p class="details-title">Chance of Rain</p>
+                    <p class="details-data" data-current-rain>0%</p>
+                </div>
+                <div class="weather-sunrise">
+                    <p class="details-title">Sunrise</p>
+                    <p class="details-data" data-current-sunrise>06:38</p>
+                </div>
+                <div class="weather-sunset">
+                    <p class="details-title">Sunset</p>
+                    <p class="details-data" data-current-sunet>16:38</p>
+                </div>
+                <div class="weather-waxing">
+                    <p class="details-title">Waxing Gibbous</p>
+                    <p class="details-data" data-current-waxing-gibbous>Null</p>
+                </div>
+        </div>
+        </div>
+        </div>
+    </div>
 </body>
 </html>

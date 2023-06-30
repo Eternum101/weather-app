@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root {
+    --bg-primary: #581BFF;
+    --bg-secondary: #5F00DB;
+    --accent-color:  
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--bg-primary);
+}
+
+.main-container {
+display: grid;
+grid:
+    "header header header" auto
+    ". search rightSide" 1fr
+    ". . ." auto
+    / auto 1fr 1fr;
+    gap: 50px;
+height: 100%;
+background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1920' height='800' preserveAspectRatio='none' viewBox='0 0 1920 800'%3e%3cg mask='url(%26quot%3b%23SvgjsMask3663%26quot%3b)' fill='none'%3e%3crect width='1920' height='800' x='0' y='0' fill='url(%26quot%3b%23SvgjsLinearGradient3664%26quot%3b)'%3e%3c/rect%3e%3cpath d='M1920 0L1337.17 0L1920 366.87z' fill='rgba(255%2c 255%2c 255%2c .1)'%3e%3c/path%3e%3cpath d='M1337.17 0L1920 366.87L1920 393.5L789.4300000000001 0z' fill='rgba(255%2c 255%2c 255%2c .075)'%3e%3c/path%3e%3cpath d='M789.4299999999998 0L1920 393.5L1920 558.08L541.5399999999998 0z' fill='rgba(255%2c 255%2c 255%2c .05)'%3e%3c/path%3e%3cpath d='M541.54 0L1920 558.08L1920 624.13L508.90999999999997 0z' fill='rgba(255%2c 255%2c 255%2c .025)'%3e%3c/path%3e%3cpath d='M0 800L129.29 800L0 400.22z' fill='rgba(0%2c 0%2c 0%2c .1)'%3e%3c/path%3e%3cpath d='M0 400.22L129.29 800L1006.65 800L0 380.17z' fill='rgba(0%2c 0%2c 0%2c .075)'%3e%3c/path%3e%3cpath d='M0 380.17L1006.65 800L1463.1399999999999 800L0 292.78000000000003z' fill='rgba(0%2c 0%2c 0%2c .05)'%3e%3c/path%3e%3cpath d='M0 292.78000000000003L1463.1399999999999 800L1530.27 800L0 265.07000000000005z' fill='rgba(0%2c 0%2c 0%2c .025)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask3663'%3e%3crect width='1920' height='800' fill='white'%3e%3c/rect%3e%3c/mask%3e%3clinearGradient x1='14.58%25' y1='135%25' x2='85.42%25' y2='-35%25' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient3664'%3e%3cstop stop-color='rgba(58%2c 0%2c 133%2c 1)' offset='0'%3e%3c/stop%3e%3cstop stop-color='rgba(95%2c 0%2c 219%2c 1)' offset='1'%3e%3c/stop%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e");
+}
+
+.header {
+    grid-area: header;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+    font-size: 1.3rem;
+    color: white;
+}
+
+.temperatures {
+    display: flex;
+    gap: 20px;
+}
+
+.temperatures button {
+    font-size: 0.9rem;
+    font-weight: 700;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 20px;
+    padding: 8px;
+    width: 100px;
+    color: white;
+    cursor: pointer;
+}
+
+.search-container {
+    grid-area: search;
+    color: white;
+    margin: 80px;
+}
+
+.search-description h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 50px;
+}
+
+.search-description p {
+    font-size: 1.1rem;
+    margin-top: 30px;
+}
+
+.search-input {
+    display: flex;
+    margin-top: 50px;
+    height: 60px;
+}
+
+.search-input input {
+    color: white;
+    font-size: 0.9rem;
+    background-color: rgba(88, 27, 255, 0.3);
+    padding: 1.4rem;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+input {
+    border-style: none;
+    background: transparent;
+    outline: none;
+}
+
+.btn-search {
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    background: linear-gradient(90deg, rgba(0,78,194,1) 0%, rgba(0,101,252,1) 100%);
+    color: white;
+    border: none;
+    font-size: 1.1rem;
+    width: 150px;
+    cursor: pointer;
+}
+
+.weather-container {
+    grid-area: rightSide;
+    padding: 20px;
+    background-color: rgba(61, 0, 141, 0.5);
+    color: white;
+    width: 90%;
+    border-radius: 10px;
+    display: grid;
+    grid:
+    "location location location" auto
+    "weather-details details-info ." 1fr
+    ". . ." auto
+    / auto 1fr auto;
+  gap: 8px;
+}
+
+.location-info {
+    grid-area: location;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.location-header {
+    display: flex;
+    gap: 5px;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.location-date-info {
+    display: flex;
+    gap: 5px;
+    font-size: 1.3rem;
+}
+
+.weather-details-container {
+    grid-area: weather-details;
+}
+
+.temperature-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 250px;
+    border-radius: 5px;
+    gap: 5px;
+    background-image: linear-gradient(rgba(61, 0, 141, 0.6), rgba(61, 0, 141, 0.8)), url("https://openweathermap.org/img/wn/01d@4x.png");
+    background-repeat: no-repeat;
+}
+
+.temperature-info i{
+    font-size: 3.5rem;
+}
+
+.air-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(61, 0, 141, 0.8);
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    height: 150px;
+    gap: 5px;
+}
+
+.weather-temperature {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.details-info-container {
+    grid-area: details-info;
+    background-color: rgba(61, 0, 141, 0.8);
+    padding: 20px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.details-title {
+    opacity: 0.8;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.details-data {
+    font-weight: bold;
+}
