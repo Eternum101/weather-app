@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 :root {
-    --bg-primary: #581BFF;
+    --bg-primary: #5800CC;
     --bg-secondary: #5F00DB;
     --accent-color:  
 }
@@ -201,4 +201,45 @@ input {
 
 .details-data {
     font-weight: bold;
+}
+
+.forecast-container {
+    margin-top: 30px;
+    color: white;
+}
+
+.forecast-container h3 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.weekly-section {
+    width: 100%;
+    text-align: center;
+    border-spacing: 0;
+    margin-top: 30px;
+}
+
+.weekly-row:nth-child(2n) {
+    background-color: #4B00AC;
+}
+
+.weekly-row td {
+    padding: 0.25rem 0.5rem;
+}
+
+.forecast-title {
+    opacity: 0.8;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.forecast-desc {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.weather-icon {
+    width: 110px;
 }
