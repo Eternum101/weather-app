@@ -54,6 +54,17 @@ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/s
     width: 100px;
     color: white;
     cursor: pointer;
+    transition: background-color 200ms ease-in;
+}
+
+.temperatures button:hover {
+    background: linear-gradient(90deg, #0065FC, transparent) #0065fcbd;
+    border: solid transparent 2px;
+}
+
+.btn-active {
+    background: linear-gradient(90deg, rgb(0, 101, 252), transparent) rgba(0, 101, 252, 0.74) !important;
+    border: none !important;
 }
 
 .search-container {
@@ -97,12 +108,17 @@ input {
 .btn-search {
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
-    background: linear-gradient(90deg, rgba(0,78,194,1) 0%, rgba(0,101,252,1) 100%);
+    background: linear-gradient(90deg, #0065FC, transparent) #0065fcbd;
     color: white;
     border: none;
     font-size: 1.1rem;
     width: 150px;
     cursor: pointer;
+    transition: background-color 1s;
+}
+
+.btn-search:hover {
+    background-color: #00abdf;
 }
 
 .weather-container {
@@ -226,7 +242,7 @@ input {
 }
 
 .weekly-row td {
-    padding: 0.25rem 0.5rem;
+    padding: 2rem 6.5rem;;
 }
 
 .forecast-title {
@@ -241,5 +257,5 @@ input {
 }
 
 .weather-icon {
-    width: 110px;
+    width: 45px;
 }
