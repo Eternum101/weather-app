@@ -20,6 +20,8 @@ export function getWeather() {
     const currentDateTime = document.querySelector('[data-current-date]');
     const currentTime = document.querySelector('[data-current-time]');
 
+    const weatherImage = document.querySelector('.temperature-info');
+
     const tableBody = document.querySelector('.weekly-section tbody');
     const rowTemplate = document.querySelector('#weekly-row-template');
 
@@ -37,6 +39,7 @@ export function getWeather() {
             lastSearchedCity = searchInput.value;
             checkCurrentWeather(searchInput.value);
             checkWeeklyForecast(searchInput.value);
+            searchInput.value = '';
         }
     });
     
@@ -59,6 +62,7 @@ export function getWeather() {
     async function checkCurrentWeather(city) {
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?&units=${units}&q=${city}&appid=${apiKey}`);
         let data = await response.json();
+        console.log(data);
 
         currentLocation.innerHTML = data.name + ", ";
         currentCountry.innerHTML = data.sys.country;
@@ -69,33 +73,11 @@ export function getWeather() {
         currentLong.innerHTML = data.coord.lon;
         currentWindDegrees.innerHTML = data.wind.deg + "&deg";
 
-        let sunriseDate = moment.unix(data.sys.sunrise);
-        currentSunrise.innerHTML = sunriseDate.format('LT');
-
-        let sunsetDate = moment.unix(data.sys.sunset);
-        currentSunset.innerHTML = sunsetDate.format('LT');
-
-        let currentDate = moment();
-        currentDateTime.innerHTML = currentDate.format('MMMM Do YYYY' + " | ");
-
-        let getTime = moment();
-        currentTime.innerHTML = getTime.format('LT');
-
-        let tempUnit = units === "metric" ? "°C" : "°F";
-        currentTemp.innerHTML = Math.round(data.main.temp) + tempUnit;
-        currentFeelDesc.innerHTML = Math.round(data.main.feels_like) + tempUnit;
-        currentMinTemp.innerHTML = Math.round(data.main.temp_min) + tempUnit;
-        currentMaxTemp.innerHTML = Math.round(data.main.temp_max) + tempUnit;
-
-        if (units === "metric") {
-            currentWind.innerHTML = data.wind.speed + " km/h";
-            currentVisiblity.innerHTML = (data.visibility / 1000) + " km";
-        } else {
-            let visibilityInMiles = (data.visibility / 1000) * 0.621371;
-            currentVisiblity.innerHTML = visibilityInMiles.toFixed(1) + " mi";
-            currentWind.innerHTML = data.wind.speed + " mph";
-        }
+        formatTimeZone(data);
+        convertUnits(data);
+        changeWeatherImage(data);
 }
+
     async function checkWeeklyForecast(city) {
         const weeklyApiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
         const response = await fetch(weeklyApiUrl);
@@ -126,6 +108,48 @@ export function getWeather() {
         return str.replace(/\w\S*/g, function(txt) {
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
+}
+
+function changeWeatherImage(data) {
+    let weatherIconID = data.weather[0].icon;
+    let weatherIconURL = `http://openweathermap.org/img/wn/${weatherIconID}@4x.png`;
+
+    weatherImage.style.backgroundImage = `linear-gradient(rgba(61, 0, 141, 0.6), rgba(61, 0, 141, 0.8)), url(${weatherIconURL})`;
+}
+
+function convertUnits(data) {
+    let tempUnit = units === "metric" ? "°C" : "°F";
+        currentTemp.innerHTML = Math.round(data.main.temp) + tempUnit;
+        currentFeelDesc.innerHTML = Math.round(data.main.feels_like) + tempUnit;
+        currentMinTemp.innerHTML = Math.round(data.main.temp_min) + tempUnit;
+        currentMaxTemp.innerHTML = Math.round(data.main.temp_max) + tempUnit;
+
+        if (units === "metric") {
+            currentWind.innerHTML = data.wind.speed + " km/h";
+            currentVisiblity.innerHTML = (data.visibility / 1000) + " km";
+        } else {
+            let visibilityInMiles = (data.visibility / 1000) * 0.621371;
+            currentVisiblity.innerHTML = visibilityInMiles.toFixed(1) + " mi";
+            currentWind.innerHTML = data.wind.speed + " mph";
+        }
+}
+
+function formatTimeZone(data) {
+    let timeZoneOffset = data.timezone / 60;
+
+        let sunriseDate = moment.unix(data.sys.sunrise).utcOffset(timeZoneOffset);
+        currentSunrise.innerHTML = sunriseDate.format('LT');
+
+        let sunsetDate = moment.unix(data.sys.sunset).utcOffset(timeZoneOffset);
+        currentSunset.innerHTML = sunsetDate.format('LT');
+
+        let currentDate = moment().utcOffset(timeZoneOffset);
+
+        let formattedDate = currentDate.format('MMMM Do YYYY');
+        let formattedTime = currentDate.format('LT');
+
+        currentDateTime.innerHTML = formattedDate + " | ";
+        currentTime.innerHTML = formattedTime;
 }
 
     checkCurrentWeather('Brisbane');
