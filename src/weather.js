@@ -93,7 +93,7 @@ export function getWeather() {
             const dayData = data.list[i];
             const row = rowTemplate.content.cloneNode(true);
         
-            row.querySelector('[data-icon]').src = `http://openweathermap.org/img/w/${dayData.weather[0].icon}.png`;
+            row.querySelector('[data-icon]').src = `http://openweathermap.org/img/wn/${dayData.weather[0].icon}@4x.png`;
             row.querySelector('[data-day]').textContent = moment(dayData.dt_txt).format('dddd');
             row.querySelector('[data-rain]').textContent = `${dayData.pop * 100}%`;
             row.querySelector('[data-humidity]').textContent = `${dayData.main.humidity}%`;

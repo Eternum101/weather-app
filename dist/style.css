@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 :root {
-    --bg-primary: #5800CC;
+    --bg-primary: #5200BD;
     --bg-secondary: #5F00DB;
     --accent-color:  
 }
@@ -14,7 +14,7 @@
 }
 
 body {
-    background-color: var(--bg-primary);
+    background: radial-gradient(circle, rgba(82,0,189,1) 50%, rgba(82,0,189,0.8407738095238095) 100%);
 }
 
 .main-container {
@@ -256,21 +256,28 @@ input {
     font-size: 2.5rem;
     font-weight: bold;
     text-align: center;
+    margin-top: 50px;
 }
 
 .weekly-section {
-    width: 100%;
+    width: 90%;
     text-align: center;
     border-spacing: 0;
-    margin-top: 30px;
+    margin: 0 auto;
+    background-color: #4C00AF;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 10px;
 }
 
 .weekly-row:nth-child(2n) {
-    background-color: #4B00AC;
+    background: linear-gradient(90deg, rgba(95,0,219,1) 70%, rgba(95,0,219,0.5046393557422969) 100%);
+    backdrop-filter: blur(10px);
 }
 
 .weekly-row td {
-    padding: 2rem 6.5rem;;
+    padding: 2rem 5.5rem;;
 }
 
 .forecast-title {
@@ -284,6 +291,14 @@ input {
     font-weight: bold;
 }
 
+.forecast-day {
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: #FFBD00;
+    border-radius: 50px;
+    padding: 5px 15px;
+}
+
 .weather-icon {
-    width: 45px;
+    width: 80px;
 }
