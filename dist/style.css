@@ -99,6 +99,14 @@ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/s
     border-bottom-left-radius: 2px;
 }
 
+.error-message {
+    opacity: 0;
+    color: rgb(255, 56, 56);
+    margin-left: 5px;
+    margin-top: 15px;
+    font-size: 1rem;
+}
+
 .icon {
     position: absolute;
     left: 20px;

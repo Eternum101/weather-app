@@ -30,6 +30,8 @@ export function getWeather() {
     const btnMetric = document.querySelector('.btn-metric');
     const btnImperial = document.querySelector('.btn-imperial');
 
+    const errorMessage = document.querySelector('.error-message');
+
     let units = "metric";
     let lastSearchedCity = "Brisbane";
     const apiKey = "ded01c248c627baaa344663e4262c277";
@@ -40,6 +42,23 @@ export function getWeather() {
             checkCurrentWeather(searchInput.value);
             checkWeeklyForecast(searchInput.value);
             searchInput.value = '';
+        } else {
+            errorMessage.style.opacity = "1";
+            errorMessage.textContent = "Please Enter Zip, City or Place";
+        }
+    });
+
+    searchInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            if (searchInput.value !== '') {
+                lastSearchedCity = searchInput.value;
+                checkCurrentWeather(searchInput.value);
+                checkWeeklyForecast(searchInput.value);
+                searchInput.value = '';
+            } else {
+                errorMessage.style.opacity = '1';
+                errorMessage.textContent = 'Please Enter Zip, City or Place';
+            }
         }
     });
     
@@ -60,30 +79,50 @@ export function getWeather() {
     });
 
     async function checkCurrentWeather(city) {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?&units=${units}&q=${city}&appid=${apiKey}`);
-        let data = await response.json();
-        console.log(data);
+        try {
+            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?&units=${units}&q=${city}&appid=${apiKey}`);
+            if (!response.ok) {
+                throw new Error(`An error occurred: ${response.statusText}`);
+            }
+            const data = await response.json();
+            if (data.cod !== 200) {
+                throw new Error(`An error occurred: ${data.message}`);
+            }
+            currentLocation.innerHTML = data.name + ", ";
+            currentCountry.innerHTML = data.sys.country;
+            currentWeatherDesc.innerHTML = toTitleCase(data.weather[0].main);
+            currentHumidity.innerHTML = data.main.humidity + "%";
+            currentCloudiness.innerHTML = data.clouds.all + "%";
+            currentLat.innerHTML = data.coord.lat; 
+            currentLong.innerHTML = data.coord.lon;
+            currentWindDegrees.innerHTML = data.wind.deg + "°";
+            errorMessage.style.opacity = "0";
+    
+            formatTimeZone(data);
+            convertUnits(data);
+            changeWeatherImage(data);
+        } catch (error) {
+            console.error(error);
+            errorMessage.textContent = "Location Not Found. Please Try Again."
+            errorMessage.style.opacity = "1";
+        }
+    }
 
-        currentLocation.innerHTML = data.name + ", ";
-        currentCountry.innerHTML = data.sys.country;
-        currentWeatherDesc.innerHTML = toTitleCase(data.weather[0].main);
-        currentHumidity.innerHTML = data.main.humidity + "%";
-        currentCloudiness.innerHTML = data.clouds.all + "%";
-        currentLat.innerHTML = data.coord.lat; 
-        currentLong.innerHTML = data.coord.lon;
-        currentWindDegrees.innerHTML = data.wind.deg + "&deg";
-
-        formatTimeZone(data);
-        convertUnits(data);
-        changeWeatherImage(data);
-}
-
-    async function checkWeeklyForecast(city) {
+async function checkWeeklyForecast(city) {
+    try {
         const weeklyApiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
         const response = await fetch(weeklyApiUrl);
-        let data = await response.json();
-
+        if (!response.ok) {
+            throw new Error(`An error occurred: ${response.statusText}`);
+        }
+        const data = await response.json();
+        if (data.cod !== '200') {
+            throw new Error(`An error occurred: ${data.message}`);
+        }
         updatedWeeklyForecast(data);
+    } catch (error) {
+        console.error(error);
+    }
 }
 
     function updatedWeeklyForecast(data) {
