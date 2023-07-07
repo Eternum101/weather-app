@@ -1,6 +1,8 @@
+// Import moment library
 import moment from 'moment';
 
 export function getWeather() {
+    // Declaring Variables
     const currentLocation = document.querySelector('[data-current-location]');
     const currentCountry = document.querySelector('[data-current-country]');
     const currentTemp = document.querySelector('[data-current-temp]');
@@ -37,6 +39,7 @@ export function getWeather() {
     let lastSearchedCity = "Brisbane";
     const apiKey = "ded01c248c627baaa344663e4262c277";
 
+    // Event Listeners
     searchButton.addEventListener("click", () => {
         if (searchInput.value !== "") {
             lastSearchedCity = searchInput.value;
@@ -79,6 +82,9 @@ export function getWeather() {
         btnMetric.classList.remove('btn-active');
     });
 
+    // Fetches weather data for a city from OpenWeatherMap API and updates page with 
+    // current weather information. 
+    // Handles errors and displays error message if location not found
     async function checkCurrentWeather(city) {
         try {
             const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?&units=${units}&q=${city}&appid=${apiKey}`);
@@ -111,23 +117,27 @@ export function getWeather() {
         }
     }
 
-async function checkWeeklyForecast(city) {
-    try {
-        const weeklyApiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
-        const response = await fetch(weeklyApiUrl);
-        if (!response.ok) {
-            throw new Error(`An error occurred: ${response.statusText}`);
+    // Fetches weekly weather forecast for a city from OpenWeatherMap API and 
+    // updates page with forecast information. Also handles errors
+    async function checkWeeklyForecast(city) {
+        try {
+            const weeklyApiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
+            const response = await fetch(weeklyApiUrl);
+            if (!response.ok) {
+                throw new Error(`An error occurred: ${response.statusText}`);
+            }
+            const data = await response.json();
+            if (data.cod !== '200') {
+                throw new Error(`An error occurred: ${data.message}`);
+            }
+            updatedWeeklyForecast(data);
+        } catch (error) {
+            console.error(error);
         }
-        const data = await response.json();
-        if (data.cod !== '200') {
-            throw new Error(`An error occurred: ${data.message}`);
-        }
-        updatedWeeklyForecast(data);
-    } catch (error) {
-        console.error(error);
     }
-}
-
+    // Updates page with weekly weather forecast information. 
+    // Creates table row for each day displaying weather icon, day, 
+    // chance of rain, humidity, and min/max temperatures
     function updatedWeeklyForecast(data) {
         tableBody.innerHTML = '';
 
@@ -146,54 +156,65 @@ async function checkWeeklyForecast(city) {
         }
     }
 
+    // Returns a new string with the first letter of each word capitalized 
+    // and the rest in lowercase
     function toTitleCase(str) {
         return str.replace(/\w\S*/g, function(txt) {
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
 }
 
-function changeWeatherImage(data) {
-    let weatherIconID = data.weather[0].icon;
-    let weatherIconURL = `http://openweathermap.org/img/wn/${weatherIconID}@4x.png`;
+    // Updates page with current weather icon. Sets background image of 
+    // weatherImage element to linear gradient and weather icon URL
+    function changeWeatherImage(data) {
+        let weatherIconID = data.weather[0].icon;
+        let weatherIconURL = `http://openweathermap.org/img/wn/${weatherIconID}@4x.png`;
 
-    weatherImage.style.backgroundImage = `linear-gradient(rgba(61, 0, 141, 0.2), rgba(61, 0, 141, 0.8)), url(${weatherIconURL})`;
-}
+        weatherImage.style.backgroundImage = `linear-gradient(rgba(61, 0, 141, 0.2), rgba(61, 0, 141, 0.8)), url(${weatherIconURL})`;
+    }
 
-function convertUnits(data) {
-    let tempUnit = units === "metric" ? "°C" : "°F";
-        currentTemp.innerHTML = Math.round(data.main.temp) + tempUnit;
-        currentFeelDesc.innerHTML = Math.round(data.main.feels_like) + tempUnit;
-        currentMinTemp.innerHTML = Math.round(data.main.temp_min) + tempUnit;
-        currentMaxTemp.innerHTML = Math.round(data.main.temp_max) + tempUnit;
+    // Updates page with current weather information in selected units 
+    // (metric or imperial). Displays current temperature, 
+    // feels-like temperature, min/max temperatures, wind speed, and visibility.
+    function convertUnits(data) {
+        let tempUnit = units === "metric" ? "°C" : "°F";
+            currentTemp.innerHTML = Math.round(data.main.temp) + tempUnit;
+            currentFeelDesc.innerHTML = Math.round(data.main.feels_like) + tempUnit;
+            currentMinTemp.innerHTML = Math.round(data.main.temp_min) + tempUnit;
+            currentMaxTemp.innerHTML = Math.round(data.main.temp_max) + tempUnit;
 
-        if (units === "metric") {
-            currentWind.innerHTML = data.wind.speed + " km/h";
-            currentVisiblity.innerHTML = (data.visibility / 1000) + " km";
-        } else {
-            let visibilityInMiles = (data.visibility / 1000) * 0.621371;
-            currentVisiblity.innerHTML = visibilityInMiles.toFixed(1) + " mi";
-            currentWind.innerHTML = data.wind.speed + " mph";
-        }
-}
+            if (units === "metric") {
+                currentWind.innerHTML = data.wind.speed + " km/h";
+                currentVisiblity.innerHTML = (data.visibility / 1000) + " km";
+            } else {
+                let visibilityInMiles = (data.visibility / 1000) * 0.621371;
+                currentVisiblity.innerHTML = visibilityInMiles.toFixed(1) + " mi";
+                currentWind.innerHTML = data.wind.speed + " mph";
+            }
+    }
 
-function formatTimeZone(data) {
-    let timeZoneOffset = data.timezone / 60;
+    // Updates page with current date, time, sunrise, 
+    // and sunset times in local time zone of selected city. 
+    // Uses Moment.js to format dates and times.
+    function formatTimeZone(data) {
+        let timeZoneOffset = data.timezone / 60;
 
-        let sunriseDate = moment.unix(data.sys.sunrise).utcOffset(timeZoneOffset);
-        currentSunrise.innerHTML = sunriseDate.format('LT');
+            let sunriseDate = moment.unix(data.sys.sunrise).utcOffset(timeZoneOffset);
+            currentSunrise.innerHTML = sunriseDate.format('LT');
 
-        let sunsetDate = moment.unix(data.sys.sunset).utcOffset(timeZoneOffset);
-        currentSunset.innerHTML = sunsetDate.format('LT');
+            let sunsetDate = moment.unix(data.sys.sunset).utcOffset(timeZoneOffset);
+            currentSunset.innerHTML = sunsetDate.format('LT');
 
-        let currentDate = moment().utcOffset(timeZoneOffset);
+            let currentDate = moment().utcOffset(timeZoneOffset);
 
-        let formattedDate = currentDate.format('MMMM Do YYYY');
-        let formattedTime = currentDate.format('LT');
+            let formattedDate = currentDate.format('MMMM Do YYYY');
+            let formattedTime = currentDate.format('LT');
 
-        currentDateTime.innerHTML = formattedDate + " | ";
-        currentTime.innerHTML = formattedTime;
-}
-
+            currentDateTime.innerHTML = formattedDate + " | ";
+            currentTime.innerHTML = formattedTime;
+    }
+    // Calls the checkCurrentWeather & checkWeeklyForecast functions 
+    // with Brisbane as the default location
     checkCurrentWeather('Brisbane');
     checkWeeklyForecast('Brisbane');
 }

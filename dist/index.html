@@ -9,14 +9,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+    <!-- Main Section -->
     <div class="main-container">
+        <!-- Header Section -->
         <div class="header">
             <h2>Weather.App</h2>
         <div class="temperatures">
                 <button class="btn-metric btn-active">°C, km/h</button>
                 <button class="btn-imperial">°F, mph</button>
         </div>
-        </div>
+    </div>
+        <!-- Search Section -->
         <div class="search-container">
             <div class="search-description">
                 <h3>24/7 Hour Weather</h3>
@@ -29,6 +32,7 @@
             </div>
             <p class="error-message"></p>
         </div>
+        <!-- Current Weather Section -->
         <div class="weather-container">
                 <div class="location-info">
                     <div class="location-header">
@@ -136,12 +140,14 @@
             </div>
         </div>
     </div>
+    <!-- Forecast Section -->
     <div class="forecast-container">
         <h3>WEEKLY FORECAST</h3>
         <table class="weekly-section">
             <tbody data-day-section></tbody>
         </table>
     </div>
+    <!-- Weekly Forecast Template -->
     <template id="weekly-row-template">
         <tr class="weekly-row">
             <td>
