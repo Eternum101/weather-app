@@ -152,7 +152,7 @@ input {
     padding: 20px;
     background-color: rgba(61, 0, 141, 0.5);
     color: white;
-    width: 90%;
+    width: 95%;
     border-radius: 10px;
     display: grid;
     grid:
@@ -232,6 +232,26 @@ input {
 
 .weather-desc, .weather-details, .weather-long, .weather-lat {
     font-size: 1.1rem;
+}
+
+.weather-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.weather-info img {
+    width: 35px;
+}
+
+.weather-arrow {
+    transition: 0.3s;
+}
+
+.current-container {
+    display: flex;
+    flex-direction: column;
 }
 
 .details-info-container {

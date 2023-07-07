@@ -30,6 +30,7 @@ export function getWeather() {
     const btnMetric = document.querySelector('.btn-metric');
     const btnImperial = document.querySelector('.btn-imperial');
 
+    const weatherArrow = document.querySelector('.weather-arrow');
     const errorMessage = document.querySelector('.error-message');
 
     let units = "metric";
@@ -96,6 +97,8 @@ export function getWeather() {
             currentLat.innerHTML = data.coord.lat; 
             currentLong.innerHTML = data.coord.lon;
             currentWindDegrees.innerHTML = data.wind.deg + "°";
+
+            weatherArrow.style.transform = `rotate(${data.wind.deg + 180}deg)`;
             errorMessage.style.opacity = "0";
     
             formatTimeZone(data);
@@ -153,7 +156,7 @@ function changeWeatherImage(data) {
     let weatherIconID = data.weather[0].icon;
     let weatherIconURL = `http://openweathermap.org/img/wn/${weatherIconID}@4x.png`;
 
-    weatherImage.style.backgroundImage = `linear-gradient(rgba(61, 0, 141, 0.6), rgba(61, 0, 141, 0.8)), url(${weatherIconURL})`;
+    weatherImage.style.backgroundImage = `linear-gradient(rgba(61, 0, 141, 0.2), rgba(61, 0, 141, 0.8)), url(${weatherIconURL})`;
 }
 
 function convertUnits(data) {
