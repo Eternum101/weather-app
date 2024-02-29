@@ -19,7 +19,7 @@ A simple and user-friendly weather application that displays the current weather
 ### Weekly Forecast Section
 ![](screenshots/weekly-forecast-section-weather-app.png)
 
-### Search Functionality
+### Search Location (Ex. Alaska)
 ![](screenshots/search-place-weather-app.png)
 
 ### Error Handling
