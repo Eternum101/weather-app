@@ -13,18 +13,17 @@ A simple and user-friendly weather application that displays the current weather
 
 ## Screenshots
 
-### Initial Screen
+### Main Section
 ![](screenshots/main-section-weather-app.png)
+
+### Weekly Forecast Section
 ![](screenshots/weekly-forecast-section-weather-app.png)
 
-### Todays Tasks Filter
-![](screenshots/todays-tasks-to-do-list.png)
+### Search Functionality
+![](screenshots/search-location-weather-app.png)
 
-### This Weeks Tasks Filter
-![](screenshots/this-weeks-tasks-to-do-list.png)
-
-### Projects Tasks Filter
-![](screenshots/projects-tasks-to-do-list.png)
+### Error Handling
+![](screenshots/error-handling-weather-app.png)
 
 [Back to Top](#weather-app)
 
