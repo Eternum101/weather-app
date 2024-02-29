@@ -13,8 +13,9 @@ A simple and user-friendly weather application that displays the current weather
 
 ## Screenshots
 
-### All Tasks Filter
-![](screenshots/all-tasks-to-do-list.png)
+### Initial Screen
+![](screenshots/main-section-weather-app.png)
+![](screenshots/weekly-forecast-section-weather-app.png)
 
 ### Todays Tasks Filter
 ![](screenshots/todays-tasks-to-do-list.png)
