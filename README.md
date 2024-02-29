@@ -20,7 +20,7 @@ A simple and user-friendly weather application that displays the current weather
 ![](screenshots/weekly-forecast-section-weather-app.png)
 
 ### Search Functionality
-![](screenshots/search-location-weather-app.png)
+![](screenshots/search-place-weather-app.png)
 
 ### Error Handling
 ![](screenshots/error-handling-weather-app.png)
