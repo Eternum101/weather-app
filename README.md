@@ -1,6 +1,6 @@
 # Weather App
 
-View Demo
+🔗 [View Demo](https://eternum101.github.io/weather-app/)
 
 ## Table of Contents
 - [About The Project](#about-the-project)
