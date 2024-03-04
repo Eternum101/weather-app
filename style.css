@@ -222,7 +222,7 @@ input {
     margin-top: 20px;
     height: 170px;
     gap: 5px;
-    background-image: linear-gradient(rgba(61, 0, 141, 0.6), rgba(61, 0, 141, 0.8)), url(../images/compass.png);
+    background-image: linear-gradient(rgba(61, 0, 141, 0.6), rgba(61, 0, 141, 0.8)), url(images/compass.png);
     background-repeat: no-repeat;
     background-size: 100px;
     background-position: center;
