@@ -4,7 +4,8 @@
   "description": "A simple and user-friendly weather application that uses HTML, CSS, and JavaScript to display the current weather conditions and forecast for any city in the world.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,7 @@
   },
   "homepage": "https://github.com/Eternum101/weather-app#readme",
   "devDependencies": {
+    "gh-pages": "^6.1.1",
     "webpack": "^5.88.1",
     "webpack-cli": "^5.1.4"
   },
