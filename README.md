@@ -38,7 +38,7 @@ A simple and user-friendly weather application that displays the current weather
 
 ---
 
-🌤️ Open Weather API
+🌤️ **Open Weather API**
 
 [Back to Top](#weather-app)
 
