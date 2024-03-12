@@ -36,6 +36,8 @@ A simple and user-friendly weather application that displays the current weather
 
 ![image](https://img.shields.io/badge/Webpack-8DD6F9?style=for-the-badge&logo=Webpack&logoColor=white)
 
+---
+
 🌤️ Open Weather API
 
 [Back to Top](#weather-app)
